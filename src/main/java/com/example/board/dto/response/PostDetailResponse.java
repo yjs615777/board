@@ -10,7 +10,7 @@ import java.util.List;
 @Builder
 public class PostDetailResponse {
 
-    private Long id;
+    private Integer id;
     private String title;
     private String content;
     private String authorName;
