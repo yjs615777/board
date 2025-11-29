@@ -1,7 +1,5 @@
 package com.example.board.dto.response;
 
-package com.example.board.dto.response;
-
 import com.example.board.domain.Post;
 import lombok.Builder;
 import lombok.Getter;

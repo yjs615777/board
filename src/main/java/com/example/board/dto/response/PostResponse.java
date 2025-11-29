@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 @Builder
 public class PostResponse {
 
-    private Long id;
+    private Integer id;
     private String title;
     private String authorName;
     private int viewCount;
     private LocalDateTime createdAt;
-    private LocalDateTime updateddAt;
+    private LocalDateTime updatedAt;
 
     public static PostResponse from(Post post) {
         return PostResponse.builder()

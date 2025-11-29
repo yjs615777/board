@@ -2,6 +2,7 @@ package com.example.board.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
+import jakarta.validation.constraints.Email;
 
 @Getter
 public class UserLoginRequest {
