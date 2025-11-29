@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name="posts")
@@ -11,13 +13,13 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post{
     @Id
-    @GeneratedValue(Strategy = GenerationType.IDEN)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
     @Column(nullable=false,length = 200)
     private String title;
 
-    @Column(nullable=false,columDefinition="TEXT") //VARCHARX 긴글용 TEXT
+    @Column(nullable=false, columnDefinition="TEXT") //VARCHARX 긴글용 TEXT
     private String content;
 
     @Column(nullable=false)
