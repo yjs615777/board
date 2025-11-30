@@ -47,7 +47,8 @@ public class PostController {
     public ApiResponse<PostResponse> update(
             @PathVariable Integer postId,
             @Valid @RequestBody PostUpdateRequest request,
-            @RequestParam Integer userId) {
+            HttpServletRequest httpRequest) {
+        Integer userId = (Integer) httpRequest.getAttribute("userId");
         return ApiResponse.ok(postService.update(postId, request, userId));
     }
 
@@ -55,7 +56,8 @@ public class PostController {
     @DeleteMapping("/{postId}")
     public ApiResponse<Void> delete(
             @PathVariable Integer postId,
-            @RequestParam Integer userId) {
+            HttpServletRequest httpRequest) {
+        Integer userId = (Integer) httpRequest.getAttribute("userId");
         postService.delete(postId, userId);
         return ApiResponse.ok();
     }

@@ -39,7 +39,8 @@ public class CommentController {
     public ApiResponse<Void> delete(
             @PathVariable Integer postId,
             @PathVariable Integer commentId,
-            @RequestParam Integer userId) {
+            HttpServletRequest httpRequest) {
+        Integer userId = (Integer) httpRequest.getAttribute("userId");
         commentService.delete(commentId, userId);
         return ApiResponse.ok();
     }
