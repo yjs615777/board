@@ -44,5 +44,11 @@ public class Post{
         this.viewCount = 0;
         this.createdAt = LocalDateTime.now();
     }
+    // 게시글 수정
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+        this.updatedAt = LocalDateTime.now();
+    }
 
 }
