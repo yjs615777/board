@@ -7,10 +7,10 @@ import lombok.Getter;
 @Getter
 public class PostUpdateRequest {
 
-    @NotBlank(message = "제목은 필수입니다")
-    @Size(max = 50, message = "제목은 50자 이하입니다")
+    @NotBlank(message = "Title is required.")
+    @Size(max = 50, message = "Title must be 50 characters or fewer.")
     private String title;
 
-    @NotBlank(message = "내용은 필수입니다")
+    @NotBlank(message = "Content is required.")
     private String content;
 }

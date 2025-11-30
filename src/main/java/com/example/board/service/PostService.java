@@ -64,7 +64,7 @@ public class PostService {
 
         // 작성자 확인
         if (!post.getUser().getId().equals(userId)) {
-            throw new UnauthorizedException("수정 권한이 없습니다");
+            throw new UnauthorizedException("You are not authorized to edit this.");
         }
 
         post.update(request.getTitle(), request.getContent());
@@ -78,7 +78,7 @@ public class PostService {
 
         // 작성자 확인
         if (!post.getUser().getId().equals(userId)) {
-            throw new UnauthorizedException("삭제 권한이 없습니다");
+            throw new UnauthorizedException("You are not authorized to delete this.");
         }
 
         postRepository.delete(post);
@@ -87,6 +87,6 @@ public class PostService {
     // 내부용: ID로 게시글 찾기
     public Post findById(Integer postId) {
         return postRepository.findById(postId)
-                .orElseThrow(() -> new PostNotFoundException("존재하지 않는 게시글입니다"));
+                .orElseThrow(() -> new PostNotFoundException("Post not found."));
     }
 }

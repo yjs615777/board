@@ -45,11 +45,11 @@ public class UserService {
     // 로그인 (간단 버전 - 실제로는 JWT 등 사용)
     public UserResponse login(UserLoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new UserNotFoundException("존재하지 않는 이메일입니다"));
+                .orElseThrow(() -> new UserNotFoundException("Email not found."));
 
         // 비밀번호 확인 (실제로는 암호화된 비밀번호 비교)
         if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
-            throw new UnauthorizedException("비밀번호가 일치하지 않습니다");
+            throw new UnauthorizedException("Incorrect password.");
         }
 
         return UserResponse.from(user);
@@ -58,6 +58,6 @@ public class UserService {
     // ID로 유저 조회 (내부용)
     public User findById(Integer id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("존재하지 않는 유저입니다"));
+                .orElseThrow(() -> new UserNotFoundException("User not found."));
     }
 }

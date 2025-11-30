@@ -7,10 +7,10 @@ import jakarta.validation.constraints.Email;
 @Getter
 public class UserLoginRequest {
 
-    @NotBlank(message = "이메일은 필수입니다")
-    @Email(message = "이메일 형식이 아닙니다")
+    @NotBlank(message = "Email is required.")
+    @Email(message = "Invalid email format.")
     private String email;
 
-    @NotBlank(message = "비밀번호는 필수입니다")
+    @NotBlank(message = "Password is required.")
     private String password;
 }

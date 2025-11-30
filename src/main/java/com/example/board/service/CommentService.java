@@ -50,10 +50,10 @@ public class CommentService {
     @Transactional
     public void delete(Integer commentId, Integer userId) {
         Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 댓글입니다"));
+                .orElseThrow(() -> new IllegalArgumentException("The comment does not exist."));
 
         if (!comment.getUser().getId().equals(userId)) {
-            throw new UnauthorizedException("삭제 권한이 없습니다");
+            throw new UnauthorizedException("You do not have permission to delete this.");
         }
 
         commentRepository.delete(comment);
