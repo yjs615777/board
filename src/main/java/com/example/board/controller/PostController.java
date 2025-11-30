@@ -56,4 +56,9 @@ public class PostController {
         postService.delete(postId, userId);
         return ApiResponse.ok();
     }
+    // 게시글 상세 (조회수 증가 X) - 수정 페이지용
+    @GetMapping("/{postId}/edit")
+    public ApiResponse<PostDetailResponse> getForEdit(@PathVariable Integer postId) {
+        return ApiResponse.ok(postService.getForEdit(postId));
+    }
 }

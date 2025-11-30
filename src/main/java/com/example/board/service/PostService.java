@@ -36,6 +36,12 @@ public class PostService {
         return PostDetailResponse.from(post);
     }
 
+    // 수정용 조회 (조회수 증가 X)
+    public PostDetailResponse getForEdit(Integer postId) {
+        Post post = findById(postId);
+        return PostDetailResponse.from(post);  // 조회수 증가 없음
+    }
+
     // 게시글 작성
     @Transactional
     public PostResponse create(PostCreateRequest request, Integer userId) {
