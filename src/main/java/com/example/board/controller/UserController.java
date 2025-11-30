@@ -3,6 +3,7 @@ package com.example.board.controller;
 import com.example.board.common.ApiResponse;
 import com.example.board.dto.request.UserCreateRequest;
 import com.example.board.dto.request.UserLoginRequest;
+import com.example.board.dto.response.LoginResponse;
 import com.example.board.dto.response.UserResponse;
 import com.example.board.service.UserService;
 import jakarta.validation.Valid;
@@ -24,7 +25,7 @@ public class UserController {
 
     // 로그인
     @PostMapping("/login")
-    public ApiResponse<UserResponse> login(@Valid @RequestBody UserLoginRequest request) {
+    public ApiResponse<LoginResponse> login(@Valid @RequestBody UserLoginRequest request) {
         return ApiResponse.ok(userService.login(request));
     }
 }

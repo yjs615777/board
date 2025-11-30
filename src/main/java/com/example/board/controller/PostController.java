@@ -6,11 +6,13 @@ import com.example.board.dto.request.PostUpdateRequest;
 import com.example.board.dto.response.PostDetailResponse;
 import com.example.board.dto.response.PostResponse;
 import com.example.board.service.PostService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/api/posts")
@@ -35,7 +37,8 @@ public class PostController {
     @PostMapping
     public ApiResponse<PostResponse> create(
             @Valid @RequestBody PostCreateRequest request,
-            @RequestParam Integer userId) {  // TODO: 나중에 로그인 연동
+            HttpServletRequest httpRequest) {  // JWT에서 userId 추출
+        Integer userId = (Integer) httpRequest.getAttribute("userId");
         return ApiResponse.ok(postService.create(request, userId));
     }
 

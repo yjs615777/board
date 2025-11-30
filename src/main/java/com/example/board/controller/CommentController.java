@@ -4,6 +4,7 @@ import com.example.board.common.ApiResponse;
 import com.example.board.dto.request.CommentCreateRequest;
 import com.example.board.dto.response.CommentResponse;
 import com.example.board.service.CommentService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,8 @@ public class CommentController {
     public ApiResponse<CommentResponse> create(
             @PathVariable Integer postId,
             @Valid @RequestBody CommentCreateRequest request,
-            @RequestParam Integer userId) {
+            HttpServletRequest httpRequest) {
+        Integer userId = (Integer) httpRequest.getAttribute("userId");
         return ApiResponse.ok(commentService.create(postId, request, userId));
     }
 

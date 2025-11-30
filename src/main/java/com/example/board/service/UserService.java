@@ -3,14 +3,16 @@ package com.example.board.service;
 import com.example.board.domain.User;
 import com.example.board.dto.request.UserCreateRequest;
 import com.example.board.dto.request.UserLoginRequest;
+import com.example.board.dto.response.LoginResponse;
 import com.example.board.dto.response.UserResponse;
 import com.example.board.exception.custom.UnauthorizedException;
 import com.example.board.exception.custom.UserNotFoundException;
 import com.example.board.repository.UserRepository;
+import com.example.board.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 @RequiredArgsConstructor  // final 필드 생성자 자동 생성
@@ -19,6 +21,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
     // 회원가입
     @Transactional  // DB에 저장하는 쓰기 작업이라 readOnly 해제
@@ -43,18 +46,24 @@ public class UserService {
     }
 
     // 로그인 (간단 버전 - 실제로는 JWT 등 사용)
-    public UserResponse login(UserLoginRequest request) {
+    // 로그인 - LoginResponse로 변경
+    public LoginResponse login(UserLoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new UserNotFoundException("Email not found."));
 
-        // 비밀번호 확인 (실제로는 암호화된 비밀번호 비교)
         if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
             throw new UnauthorizedException("Incorrect password.");
         }
 
-        return UserResponse.from(user);
-    }
+        // JWT 토큰 생성
+        String token = jwtUtil.generateToken(user.getId(), user.getUsername());
 
+        return LoginResponse.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .token(token)
+                .build();
+    }
     // ID로 유저 조회 (내부용)
     public User findById(Integer id) {
         return userRepository.findById(id)
