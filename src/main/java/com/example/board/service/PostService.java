@@ -29,9 +29,10 @@ public class PostService {
                 .map(PostResponse::from);
     }
 
-    // 게시글 상세 조회
+    @Transactional  // 조회수 증가하니까 쓰기 작업
     public PostDetailResponse getDetail(Integer postId) {
         Post post = findById(postId);
+        post.increaseViewCount();  // 조회수 +1
         return PostDetailResponse.from(post);
     }
 

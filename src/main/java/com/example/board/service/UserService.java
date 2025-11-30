@@ -10,6 +10,7 @@ import com.example.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 @RequiredArgsConstructor  // final 필드 생성자 자동 생성
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     // 회원가입
     @Transactional  // DB에 저장하는 쓰기 작업이라 readOnly 해제
@@ -32,7 +34,7 @@ public class UserService {
         // 유저 생성 (실제로는 비밀번호 암호화 필요)
         User user = User.builder()
                 .username(request.getUsername())
-                .passwordHash(request.getPassword())  // TODO: 암호화
+                .passwordHash(passwordEncoder.encode(request.getPassword()))
                 .email(request.getEmail())
                 .build();
 
@@ -46,7 +48,7 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException("존재하지 않는 이메일입니다"));
 
         // 비밀번호 확인 (실제로는 암호화된 비밀번호 비교)
-        if (!user.getPasswordHash().equals(request.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), user.getPasswordHash())) {
             throw new UnauthorizedException("비밀번호가 일치하지 않습니다");
         }
 

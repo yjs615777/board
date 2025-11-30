@@ -50,5 +50,9 @@ public class Post{
         this.content = content;
         this.updatedAt = LocalDateTime.now();
     }
+    // 조회수 증가
+    public void increaseViewCount() {
+        this.viewCount++;
+    }
 
 }
