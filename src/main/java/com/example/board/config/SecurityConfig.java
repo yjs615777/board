@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpMethod; 
 
 import java.util.List;
 
@@ -36,6 +36,8 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        // CORS preflight 허용
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         // 1) 메인/로그인/회원가입 화면은 모두 허용
                         .requestMatchers(
                                 "/",              // 메인
@@ -63,7 +65,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
-                "http://localhost:5173",
+                "https://board-frontend-sable.vercel.app",
                 "http://15.164.61.176:8080"
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
