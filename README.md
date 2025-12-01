@@ -43,7 +43,7 @@ Frontend
 ## 문제와 해결과정
 
 새로고침(F5) 하면 Vercel에서 404 NOT_FOUND 페이지 출력\화면이 아예 안 뜸 -> 프론트 루트에 vercel.json 생성:
-\`\`\`java
+\`\`\`
 {
   "rewrites": [
     {
