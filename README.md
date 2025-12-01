@@ -33,6 +33,8 @@ Frontend
 - React Router
 - Axios
 - Custom CSS
+- node.js
+- javascript
 - Vercel (배포)
 
 ## 주요 기능
