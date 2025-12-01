@@ -36,11 +36,23 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // 로그인/회원가입은 누구나 접근 가능
+                        // 1) 메인/로그인/회원가입 화면은 모두 허용
+                        .requestMatchers(
+                                "/",              // 메인
+                                "/login",         // 로그인 페이지
+                                "/signup",        // 회원가입 페이지 (네가 쓰는 URL에 맞게 수정)
+                                "/users/signup",  // 예: /users/signup 이런 형태라면
+                                "/users/register",
+                                "/css/**", "/js/**", "/images/**" // 정적 리소스
+                        ).permitAll()
+
+                        // 2) 회원가입/로그인 API는 누구나 접근 가능
                         .requestMatchers("/api/users/**").permitAll()
-                        // 게시글 조회는 누구나 가능
-                        .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
-                        // 나머지는 인증 필요
+
+                        // 3) 게시글 API는 전부 인증 필요 (사실 anyRequest().authenticated()에 포함되지만 명시해도 됨)
+                        // .requestMatchers("/api/posts/**").authenticated()
+
+                        // 4) 나머지 모든 요청은 인증 필요
                         .anyRequest().authenticated()
                 )
                  .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
