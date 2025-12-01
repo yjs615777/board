@@ -10,6 +10,14 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(
+        origins = {
+                "https://js-board.online",
+                "https://www.js-board.online",
+                "https://board-frontend-sable.vercel.app"
+        },
+        allowCredentials = "true"
+)
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
