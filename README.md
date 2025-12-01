@@ -16,7 +16,7 @@ https://www.figma.com/design/TMkxqLfVHCFe8fWEOnPLUQ/JavaBoard?t=ibFJRQLBiVOwBEn6
   
 Backend
 - Java 17
-- Spring Boot 3
+- Spring Boot
 - Spring Security
 - JWT
 - postman
