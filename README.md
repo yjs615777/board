@@ -19,3 +19,8 @@ Frontend
 - Axios
 - Custom CSS
 - Vercel (배포)
+
+  <img width="1499" height="586" alt="image" src="https://github.com/user-attachments/assets/ef66dbb3-dd69-4584-87d2-b29c14b6d124" />
+
+
+  
