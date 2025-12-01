@@ -40,7 +40,24 @@ Frontend
 - 조회수
 - 권한 체크 (작성자만 글/댓글 수정/삭제 가능)
 
-- ##
+## 문제와 해결과정
+
+새로고침(F5) 하면 Vercel에서 404 NOT_FOUND 페이지 출력\화면이 아예 안 뜸 -> 프론트 루트에 vercel.json 생성:
+'''
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+'''
+
 
 
 
