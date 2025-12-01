@@ -2,7 +2,7 @@
 Board - 여러 사용자들이 소통할 수 있는 게시판서비스
 
 ## 사용 기술
-- Backend
+Backend
 - Java 17
 - Spring Boot 3
 - Spring Security
