@@ -66,7 +66,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 "https://board-frontend-sable.vercel.app",
-                "http://15.164.61.176:8080"
+                "http://15.164.61.176:8080",
+                "https://js-board.online",
+                "https://www.js-board.online"
+
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
