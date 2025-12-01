@@ -12,3 +12,10 @@ Backend
 - Caddy (Reverse Proxy + HTTPS)
 - EC2 Amazon Linux 2023
 - systemd 서비스 등록 (JAR 운영)
+
+Frontend
+- React (Vite)
+- React Router
+- Axios
+- Custom CSS
+- Vercel (배포)
