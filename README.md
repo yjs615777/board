@@ -13,7 +13,9 @@ https://miro.com/app/board/uXjVJj6NxZ0=/
 Figma UI/UX 시안제작
 https://www.figma.com/design/TMkxqLfVHCFe8fWEOnPLUQ/JavaBoard?t=ibFJRQLBiVOwBEn6-0
 <img width="1499" height="586" alt="image" src="https://github.com/user-attachments/assets/ef66dbb3-dd69-4584-87d2-b29c14b6d124" />
-  
+
+Godaddy domain js-board.online 구매+DNS 설정
+
 Backend
 - Java 17
 - Spring Boot
