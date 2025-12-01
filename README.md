@@ -1,6 +1,9 @@
 ## 프로젝트 개요
 Board - 여러 사용자들이 소통할 수 있는 게시판서비스
 
+## 배포 주소
+- https://www.js-board.online/
+
 ## 사용 기술
 Backend
 - Java 17
